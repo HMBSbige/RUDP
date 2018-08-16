@@ -9,5 +9,22 @@
     <Import_RootNamespace>Protocol</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Base\RawPacket.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Base\UdpClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Base\UdpListener.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Base\UdpSocket.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ClientInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Internal\InternalPackets.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Internal\PacketHandlerInternal.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Packets\ChatPacket.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Packets\LoginPacket.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Packets\Packet.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Packets\PacketReader.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Packets\PingPacket.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RudpClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RUdpServer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Threading\ConcurrentList.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utils\Extensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utils\Helper.cs" />
   </ItemGroup>
 </Project>
