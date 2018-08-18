@@ -12,7 +12,7 @@ namespace Protocol.Base
 	{
 		private const int MAX_BUFFER_SIZE = 8 * 1024;
 
-		private AddressFamily m_family = AddressFamily.InterNetwork;
+		protected AddressFamily m_family = AddressFamily.InterNetwork;
 		private byte[] m_buffer = new byte[MAX_BUFFER_SIZE];
 		private Socket m_client;
 
@@ -174,8 +174,16 @@ namespace Protocol.Base
 		public byte[] EndReceive(IAsyncResult result, ref IPEndPoint remoteEP)
 		{
 			var ep = Helper.GetEp(m_family);
+			int rcvd = 0;
+			try
+			{
+				rcvd = m_client.EndReceiveFrom(result, ref ep);
+			}
+			catch
+			{
+				//
+			}
 
-			int rcvd = m_client.EndReceiveFrom(result, ref ep);
 			remoteEP = (IPEndPoint)ep;
 
 			if (rcvd < MAX_BUFFER_SIZE)
@@ -290,7 +298,7 @@ namespace Protocol.Base
 #endif
 		public Task<Tuple<Packet, IPEndPoint>> ReceivePacketAsync()
 		{
-			return Task.Factory.FromAsync((cb, state) => BeginReceive(cb, state), (ar) =>
+			return Task.Factory.FromAsync(BeginReceive, (ar) =>
 			{
 				IPEndPoint remoteEP = null;
 				byte[] buffer = EndReceive(ar, ref remoteEP);
